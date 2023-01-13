@@ -2,10 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+// use LineString;
+use MatanYadaev\EloquentSpatial\Objects\Point;
 
-class Witel extends Model
+class Witel extends BaseModel
 {
-    use HasFactory;
+    protected $fillable = [
+        'name',
+        'location'
+    ];
+    protected $casts = [
+        'location' => Point::class
+    ];
 }

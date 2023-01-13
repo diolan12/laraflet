@@ -13,9 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('multis', function (Blueprint $table) {
+        Schema::create('fos', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->double('min_x')->nullable();
+            $table->double('min_y')->nullable();
+            $table->double('max_x')->nullable();
+            $table->double('max_y')->nullable();
+            $table->lineString('cable_line')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('multis');
+        Schema::dropIfExists('fos');
     }
 };

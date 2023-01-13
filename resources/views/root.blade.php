@@ -76,7 +76,7 @@
         </nav>
     </header>
     <main>
-        <?= view('pages.' . $content, $payload) ?>
+        <?= view('pages.' . $content . '.' . $content, $payload) ?>
     </main>
     <div class="fixed-action-btn">
         <a class="btn-floating btn-large red" onclick="printLine()">

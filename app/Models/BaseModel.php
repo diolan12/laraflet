@@ -4,7 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class BaseModel extends Model {
+class BaseModel extends Model
+{
 
     /**
      * The validation rules.
@@ -22,7 +23,7 @@ class BaseModel extends Model {
     {
         return (new self())->getTable();
     }
-    
+
     /**
      * Getter for the current model validation rule.
      *

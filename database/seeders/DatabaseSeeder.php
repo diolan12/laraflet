@@ -21,9 +21,8 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
         $this->call([
-            'Database\Seeders\Multi',
-            'Database\Seeders\Points',
-            'Database\Seeders\Cable',
+            'Database\Seeders\WitelSeeder',
+            'Database\Seeders\FoSeeder'
         ]);
     }
 }

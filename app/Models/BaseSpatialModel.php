@@ -2,26 +2,20 @@
 
 namespace App\Models;
 
-use MatanYadaev\EloquentSpatial\SpatialBuilder;
+
 use MatanYadaev\EloquentSpatial\Traits\HasSpatial;
-use MatanYadaev\EloquentSpatial\Objects\MultiPoint;
+use MatanYadaev\EloquentSpatial\SpatialBuilder;
 
 /**
  * @property MultiPoint $line
  * @method static SpatialBuilder query()
  */
-class Cable extends BaseModel
+class BaseSpatialModel extends BaseModel
 {
     use HasSpatial;
+
     public static function query(): SpatialBuilder
     {
         return parent::query();
     }
-    protected $fillable = [
-        'name',
-        'line'
-    ];
-    protected $casts = [
-        'line' => MultiPoint::class
-    ];
 }
