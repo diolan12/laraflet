@@ -7,15 +7,34 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## How To Deploy
-1. Clone this repository
-2. Install composer
-   
-   `composer install`
-3. Run migration and seeding
-   
-   ```php artisan migrate:fresh --seed```
+# How To
 
+1. Clone this repository
+2. Install using composer
+
+   ```cmd
+   composer install
+   ```
+
+3. Create database `laraflet-v1` in mysql
+4. Run migration and seeding
+   If you install for the first time, use
+
+   ```cmd
+   php artisan migrate:install --seed
+   ```
+
+   If you already install migration, use
+
+   ```cmd
+   php artisan migrate:refresh --seed
+   ```
+
+5. Serve the application
+
+   ```cmd
+   php artisan serve
+   ```
 
 ## About Laravel
 
