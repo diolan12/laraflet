@@ -53,8 +53,20 @@
         integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <?php endif?>
 
-
-
+    <!-- Lazy load css per pages -->
+    <?php
+    try {
+        echo view('pages.' . $content . '.css', $payload);
+    } catch (\Throwable $th) {
+        if ($th::class != 'InvalidArgumentException') {
+            throw $th;
+        } else {
+            // dd($th::class);
+        }
+    }
+    ?>
+    
+    <!-- Main global CSS stylesheet -->
     <link rel="stylesheet" href="/assets/css/style.css">
     <script>
         var payload = <?= json_encode($payload) ?>;
@@ -83,7 +95,22 @@
             <i class="large material-icons">print</i>
         </a>
     </div>
+    
+    <!-- Main global javascript -->
     <script src="/assets/js/app.js"></script>
+    
+    <!-- Lazy load javascript per pages -->
+    <?php
+    try {
+        echo view('pages.' . $content . '.js', $payload);
+    } catch (\Throwable $th) {
+        if ($th::class != 'InvalidArgumentException') {
+            throw $th;
+        } else {
+            // dd($th::class);
+        }
+    }
+    ?>
 </body>
 
 </html>
