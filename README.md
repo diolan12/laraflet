@@ -9,15 +9,15 @@
 
 # How To
 
-1. Clone this repository
-2. Install using composer
+1. Clone this repository.
+2. Install using composer.
 
    ```cmd
    composer install
    ```
 
-3. Create database `laraflet-v1` in mysql
-4. Run migration and seeding
+3. Create database `laraflet-v1` in mysql.
+4. Run migration and seeding.
    If you install for the first time, use
 
    ```cmd
@@ -30,7 +30,7 @@
    php artisan migrate:refresh --seed
    ```
 
-5. Serve the application
+5. Serve the application.
 
    ```cmd
    php artisan serve
