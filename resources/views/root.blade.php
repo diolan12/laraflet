@@ -22,11 +22,13 @@
     <!-- Make sure you put this AFTER Leaflet's CSS -->
     <script src="/assets/js/leaflet.js"></script>
 
-    <!-- Compiled and minified JavaScript -->
-    <script src="/assets/js/materialize.min.js"></script>
-
+    <!-- JQuery -->
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"
         integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="/assets/js/materialize.min.js"></script>
+    
     <?php else:?>
     <title>Laraflet</title>
     <!-- Fonts -->
@@ -46,11 +48,13 @@
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
         integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
 
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/@materializecss/materialize@1.2.1/dist/js/materialize.min.js"></script>
 
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
-        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <?php endif?>
 
     <!-- Lazy load css per pages -->
@@ -72,9 +76,12 @@
         var payload = <?= json_encode($payload) ?>;
         console.log(payload);
     </script>
+    
+    <!-- Main global javascript -->
+    <script src="/assets/js/app.js"></script>
 </head>
 
-<body class="grey darken-3 white-text">
+<body class="">
     <header>
         <nav>
             <div class="nav-wrapper">
@@ -95,9 +102,6 @@
             <i class="large material-icons">print</i>
         </a>
     </div>
-    
-    <!-- Main global javascript -->
-    <script src="/assets/js/app.js"></script>
     
     <!-- Lazy load javascript per pages -->
     <?php

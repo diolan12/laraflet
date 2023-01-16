@@ -1,6 +1,10 @@
 <script>
+    let map;
     // set center map position by default x y value
     var centerPosition = [-7.284998154666389, 112.78127789497377];
+
+    var elem = document.getElementById('modal-new_witel')
+    var modalNewWitel = M.Modal.getInstance(elem)
 
     function getLocation() {
         if (navigator.geolocation) {
@@ -12,8 +16,12 @@
 
     function showPosition(position) {
         this.centerPosition = [position.coords.latitude, position.coords.longitude]
+        map.setView(this.centerPosition)
     }
     getLocation()
+    this.onReady(() => {
+        modalNewWitel = M.Modal.getInstance(elem)
+    })
 
     const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
@@ -24,8 +32,12 @@
     var fos = [];
 
     payload.data.witels.map((witel) => {
-        witels.push(L.marker(witel.location.coordinates.reverse(), {})
-            .bindPopup("<b>" + witel.name + "</b>"))
+        witels.push(L.marker(witel.location.coordinates.reverse(), {
+            extra: witel
+        }).on('click', (ev) => {
+            // open modal
+            console.log(ev);
+        }).bindPopup("<b>Witel " + witel.name + "</b>"))
     })
     payload.data.fos.map((fo) => {
         var _points = []
@@ -35,15 +47,14 @@
             _points.push(point.reverse())
         })
         fos.push(L.polyline(_points, {
-            color: 'green'
-        }).bindPopup("<b>" + fo.name + "</b>"))
+            color: 'lime'
+        }).bindPopup("<b>" + fo.name + "</b>").openPopup())
     })
 
-    console.log(fos);
     var lgWitels = L.layerGroup(witels);
     var lgFos = L.layerGroup(fos);
 
-    var map = L.map('map', {
+    map = L.map('map', {
         center: this.centerPosition,
         zoom: 15,
         layers: [osm, lgWitels, lgFos]
@@ -60,17 +71,21 @@
         console.log(ev)
     }
 
+    function reinitWitels() {
+        lgWitels.clearLayers()
+        lgWitels.addLayer(L.layerGroup(witels))
+    }
+
     function newWitel(ev) {
         // show modal for witel name
+        modalNewWitel.open()
 
         // add marker
         witels.push(L.marker(ev.latlng, {
             draggable: true
-        })
-            .bindPopup("<b>New witel</b>"))
+        }).bindPopup("<b>New witel</b>"))
 
-        lgWitels.clearLayers()
-        lgWitels.addLayer(L.layerGroup(witels))
+        reinitWitels()
 
     }
     map.on('click', onMapClick);
