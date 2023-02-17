@@ -15,7 +15,7 @@
         </div>
     </div>
     <div class="modal-footer">
-        <a href="#!" class="modal-close waves-effect waves-green btn-flat red">Cancel</a>
-        <a href="#!" class="modal-close waves-effect waves-green btn-flat green">Create</a>
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat green-text">Create</a>
     </div>
 </div>

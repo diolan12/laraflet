@@ -48,7 +48,7 @@
         })
         fos.push(L.polyline(_points, {
             color: 'lime'
-        }).bindPopup("<b>" + fo.name + "</b>").openPopup())
+        }).bindPopup("<b>" + fo.name + '</b><br><a href="/c/'+fo.id+'"">Edit<a>').openPopup())
     })
 
     var lgWitels = L.layerGroup(witels);
