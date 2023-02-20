@@ -28,7 +28,7 @@
 
     <!-- Compiled and minified JavaScript -->
     <script src="/assets/js/materialize.min.js"></script>
-    
+
     <?php else:?>
     <title>Laraflet</title>
     <!-- Fonts -->
@@ -42,11 +42,16 @@
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@materializecss/materialize@1.2.1/dist/css/materialize.min.css">
 
+    <!-- Leaflet's CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
         integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
     <!-- Make sure you put this AFTER Leaflet's CSS -->
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
         integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+    <!-- Leaflet's Edit -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+    {{-- <script src="/assets/js/Leaflet.Editable.js"></script> --}}
 
     <!-- JQuery -->
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"
@@ -69,14 +74,14 @@
         }
     }
     ?>
-    
+
     <!-- Main global CSS stylesheet -->
     <link rel="stylesheet" href="/assets/css/style.css">
     <script>
         var payload = <?= json_encode($payload) ?>;
         console.log(payload);
     </script>
-    
+
     <!-- Main global javascript -->
     <script src="/assets/js/app.js"></script>
 </head>
@@ -102,7 +107,7 @@
             <i class="large material-icons">print</i>
         </a>
     </div>
-    
+
     <!-- Lazy load javascript per pages -->
     <?php
     try {
