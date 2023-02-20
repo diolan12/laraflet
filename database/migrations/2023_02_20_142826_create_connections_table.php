@@ -13,8 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('d_inventory_hops', function (Blueprint $table) {
+        Schema::create('connections', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('from');
+            $table->foreignId('to');
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('d_inventory_hops');
+        Schema::dropIfExists('connections');
     }
 };

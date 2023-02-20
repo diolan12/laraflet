@@ -13,8 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('d_hop_cores', function (Blueprint $table) {
+        Schema::create('connection_breakpoints', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('connection_id');
+            $table->point('point')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('d_hop_cores');
+        Schema::dropIfExists('connection_breakpoints');
     }
 };

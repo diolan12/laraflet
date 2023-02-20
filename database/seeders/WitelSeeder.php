@@ -20,11 +20,11 @@ class WitelSeeder extends Seeder
         DB::table('witels')->insert([
             [
                 'name' => "Gubeng",
-                'location' => DB::raw("(GeomFromText('" . new Point(-7.279379022306316, 112.76221275329591, 4326) . "'))")
+                'location' => DB::raw("(GeomFromText('" . new Point(-7.276505575143712, 112.74529337882997, 4326) . "'))")
             ],
             [
-                'name' => "Rungkut",
-                'line' => DB::raw("(GeomFromText('" . new Point(-7.299982163071488, 112.76247024536134, 4326) . "'))")
+                'name' => "Darmo",
+                'line' => DB::raw("(GeomFromText('" . new Point(-7.289010257204875, 112.73605316877367, 4326) . "'))")
             ],
         ]);
     }

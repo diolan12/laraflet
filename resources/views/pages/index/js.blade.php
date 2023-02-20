@@ -1,7 +1,7 @@
 <script>
     let map;
     // set center map position by default x y value
-    var centerPosition = [-7.284998154666389, 112.78127789497377];
+    var centerPosition = [-7.299684190520188, 112.76444435119629];
 
     var elem = document.getElementById('modal-new_witel')
     var modalNewWitel = M.Modal.getInstance(elem)
@@ -31,13 +31,13 @@
     var witels = [];
     var fos = [];
 
-    payload.data.witels.map((witel) => {
-        witels.push(L.marker(witel.location.coordinates.reverse(), {
-            extra: witel
+    payload.data.locations.map((location) => {
+        witels.push(L.marker(location.point.coordinates.reverse(), {
+            extra: location
         }).on('click', (ev) => {
             // open modal
             console.log(ev);
-        }).bindPopup("<b>Witel " + witel.name + "</b>"))
+        }).bindPopup("<b>" + location.type.toUpperCase() + " " + location.name + "</b>"))
     })
     payload.data.fos.map((fo) => {
         var _points = []
@@ -48,7 +48,7 @@
         })
         fos.push(L.polyline(_points, {
             color: 'lime'
-        }).bindPopup("<b>" + fo.name + '</b><br><a href="/c/'+fo.id+'"">Edit<a>').openPopup())
+        }).bindPopup("<b>" + fo.name + '</b><br><a href="/c/' + fo.id + '"">Edit<a>').openPopup())
     })
 
     var lgWitels = L.layerGroup(witels);

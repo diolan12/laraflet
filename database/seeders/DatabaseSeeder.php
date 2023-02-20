@@ -21,8 +21,12 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
         $this->call([
-            'Database\Seeders\WitelSeeder',
-            'Database\Seeders\FoSeeder'
+            // 'Database\Seeders\WitelSeeder',
+            // 'Database\Seeders\FoSeeder',
+            'Database\Seeders\LocationSeeder',
+            'Database\Seeders\ConnectionSeeder',
+            'Database\Seeders\ConnectionBreakpointSeeder',
+            'Database\Seeders\HopSeeder'
         ]);
     }
 }

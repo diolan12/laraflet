@@ -13,8 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('d_hop_supports', function (Blueprint $table) {
+        Schema::create('locations', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('abbreviation');
+            $table->enum('type', ['nasional', 'divisi', 'witel', 'sto', 'site']);
+            $table->point('point')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('d_hop_supports');
+        Schema::dropIfExists('locations');
     }
 };
