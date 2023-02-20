@@ -1,8 +1,6 @@
 <div>
     <div id="map"></div>
 </div>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
 
 <script>
     const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
