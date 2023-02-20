@@ -20,5 +20,8 @@ Route::get('/c/{cableID}', [Controller::class, 'cable']);
 Route::post('/p/{pointID}', [Controller::class, 'addPoint']);
 Route::delete('/p/{pointID}', [Controller::class, 'deletePoint']);
 
+Route::post('/api/location', [Controller::class, 'saveLocation']);
+Route::post('/api/connection', [Controller::class, 'saveConnection']);
+
 
 Route::get('/v3', [Controller::class, 'v3']);

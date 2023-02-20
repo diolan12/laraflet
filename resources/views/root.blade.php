@@ -109,11 +109,6 @@
     <main>
         <?= view('pages.' . $content . '.' . $content, $payload) ?>
     </main>
-    <div class="fixed-action-btn">
-        <a class="btn-floating btn-large red" onclick="printLine()">
-            <i class="large material-icons">print</i>
-        </a>
-    </div>
 
     <!-- Lazy load javascript per pages -->
     <?php

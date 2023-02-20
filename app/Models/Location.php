@@ -17,7 +17,14 @@ class Location extends Model
         'point' => Point::class
     ];
 
-    // function connection() {
-    //     return $this->hasOne('App\\Models\\Connection');
-    // }
+    public function froms() {
+        return $this->hasMany('App\\Models\\Connection', 'from', 'id');
+    }
+    public function tos() {
+        return $this->hasMany('App\\Models\\Connection', 'to', 'id');
+    }
+    public function connections(){
+        return $this->froms()->get()->merge($this->tos()->get());
+    }
+    
 }
