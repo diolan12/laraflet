@@ -30,8 +30,8 @@ class Location extends Model
     public function tos() {
         return $this->hasMany('App\\Models\\Connection', 'to', 'id');
     }
-    public function connections(){
-        return $this->froms()->get()->merge($this->tos()->get());
-    }
+    // public function connections(){
+    //     return $this->froms()->get()->merge($this->tos()->get());
+    // }
     
 }
