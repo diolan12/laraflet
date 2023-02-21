@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Connection;
+use App\Models\ConnectionBreakpoint;
 use App\Models\Fo;
 use App\Models\Hop;
 use App\Models\Location;
@@ -54,7 +55,7 @@ class Controller extends BaseView
         return Connection::with(['from', 'to'])->findOrFail($conn->id);
     }
 
-    public function cable(Request $request, $connID)
+    public function conn(Request $request, $connID)
     {
         $conn = Connection::with(['from', 'to', 'break_points', 'hops'])->find($connID);
         if ($conn == null) {
@@ -63,7 +64,12 @@ class Controller extends BaseView
         $this->data['connection'] = $conn;
         return $this->render('cable');
     }
-
+    public function newBreakPoint(Request $request, $connID){
+        return ConnectionBreakpoint::create([
+            'connection_id' => $connID,
+            'point' => new Point($request->lat, $request->lng, 4326)
+        ]);
+    }
     public function updateHopLine(Request $request, $hopID){
         if (!$request->has('latlngs')){
             abort(400);

@@ -13,6 +13,10 @@ use MatanYadaev\EloquentSpatial\Objects\Point;
 class ConnectionBreakpoint extends Model
 {
     use HasSpatial;
+    protected $fillable = [
+        'connection_id',
+        'point'
+    ];
     protected $casts = [
         'point' => Point::class
     ];

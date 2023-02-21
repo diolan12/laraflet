@@ -72,7 +72,7 @@
             color: 'yellow'
         });
         pl.bindPopup("<b>" + connection.from.abbreviation + '-' + connection.to.abbreviation +
-            '</b><br><a href="/c/' + connection.id + '"">Edit<a>').openPopup();
+            '</b><br><a href="/conn/' + connection.id + '"">Edit<a>').openPopup();
         // pl.editing.enable();
         conns.push(pl)
         connection.break_points.map((breakPoint) => {
@@ -204,7 +204,7 @@
                 color: 'yellow'
             });
             pl.bindPopup("<b>" + data.from.abbreviation + '-' + data.to.abbreviation +
-                '</b><br><a href="/c/' + data.id + '"">Edit<a>').openPopup();
+                '</b><br><a href="/conn/' + data.id + '"">Edit<a>').openPopup();
             // pl.editing.enable();
             conns.push(pl)
             reinitConns();

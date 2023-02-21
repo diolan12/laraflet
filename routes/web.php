@@ -16,12 +16,13 @@ use App\Http\Controllers\Controller;
 
 
 Route::get('/', [Controller::class, 'index']);
-Route::get('/c/{connID}', [Controller::class, 'cable']);
+Route::get('/conn/{connID}', [Controller::class, 'conn']);
 Route::post('/p/{pointID}', [Controller::class, 'addPoint']);
 Route::delete('/p/{pointID}', [Controller::class, 'deletePoint']);
 
 Route::post('/api/location', [Controller::class, 'saveLocation']);
 Route::post('/api/connection', [Controller::class, 'saveConnection']);
+Route::post('/api/break-point/{connID}', [Controller::class, 'newBreakPoint']);
 Route::post('/api/hop-line/{hopID}', [Controller::class, 'updateHopLine']);
 
 

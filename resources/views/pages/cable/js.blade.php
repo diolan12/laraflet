@@ -30,7 +30,7 @@
             latlngs: JSON.stringify(evt.target.editing.latlngs[0])
         }
         console.log(data);
-        $.post('/api/hop-line/'+hop.id, data, (response, status) => {
+        $.post('/api/hop-line/' + hop.id, data, (response, status) => {
             // stos.push(L.marker(_tempEv.latlng, {
             //     // draggable: true
             // }).bindPopup("<b>STO " + name + "</b>"))
@@ -53,7 +53,8 @@
 
     var connection = payload.data.connection;
     var centerView = findCenter([connection.from.point.coordinates.reverse(), connection.to.point.coordinates
-    .reverse()]);
+        .reverse()
+    ]);
     var stos = [];
     var titikSambung = [];
     var hops = [];
@@ -102,6 +103,11 @@
     var lgSto = L.layerGroup(stos);
     var lgTitikSambung = L.layerGroup(titikSambung);
 
+    function reinitTitikSambung() {
+        lgTitikSambung.clearLayers()
+        lgTitikSambung.addLayer(L.layerGroup(titikSambung))
+    }
+
     var map = L.map('map', {
         // center: payload.data.centerView.reverse(),
         center: centerView,
@@ -112,7 +118,31 @@
     function onMapClick(ev) {
         console.log(ev)
     }
-    map.on('click', onMapClick);
+
+    function newBreakPoint(ev) {
+        console.log(ev)
+        var data = {
+            lat: ev.latlng.lat,
+            lng: ev.latlng.lng
+        }
+        $.post('/api/break-point/' + connection.id, data, (response, status) => {
+            let newTS = L.marker(response.point.coordinates, {
+                draggable: true,
+                extraData: response
+            });
+            newTS.on('dragend', console.log);
+            titikSambung.push(newTS);
+            reinitTitikSambung();
+            console.log(response);
+            M.toast({
+                text: 'Titik sambung tersimpan'
+            })
+        }).fail(() => {
+            M.toast({
+                text: 'Gagal menyimpan titik sambung'
+            })
+        });
+    }
 
     var overlayMaps = {
         "Kabel": cables,
@@ -120,4 +150,7 @@
         "Titik Sambung": lgTitikSambung,
     };
     var layerControl = L.control.layers(null, overlayMaps).addTo(map);
+
+    map.on('click', onMapClick);
+    map.on('contextmenu', newBreakPoint);
 </script>
