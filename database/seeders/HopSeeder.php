@@ -18,12 +18,22 @@ class HopSeeder extends Seeder
     public function run()
     {
         DB::table('hops')->insert([
-            'connection_id' => 1,
-            'qrcode' => 'RJ045',
-            'line' => DB::raw("(GeomFromText('" . new LineString([
-                new Point(-7.276505575143712, 112.74529337882997, 4326),
-                new Point(-7.281294643522043, 112.74054050445558, 4326)
-            ], 4326) . "'))")
+            [
+                'connection_id' => 1,
+                'qrcode' => 'RJ045',
+                'line' => DB::raw("(GeomFromText('" . new LineString([
+                    new Point(-7.276505575143712, 112.74529337882997, 4326),
+                    new Point(-7.281629876393493, 112.74031519889833, 4326)
+                ], 4326) . "'))")
+            ],
+            [
+                'connection_id' => 1,
+                'qrcode' => 'RJ046',
+                'line' => DB::raw("(GeomFromText('" . new LineString([
+                    new Point(-7.281629876393493, 112.74031519889833, 4326),
+                    new Point(-7.2890102572049, 112.73605316877, 4326)
+                ], 4326) . "'))")
+            ]
         ]);
     }
 }

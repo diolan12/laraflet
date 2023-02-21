@@ -1,3 +1,4 @@
 <div>
-    <div id="map"></div>
+    <div id="map">
+    </div>
 </div>

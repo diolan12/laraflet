@@ -19,7 +19,7 @@ class ConnectionBreakpointSeeder extends Seeder
         DB::table('connection_breakpoints')->insert([
             [
                 'connection_id' => 1,
-                'point' => DB::raw("(GeomFromText('" . new Point(-7.281294643522043, 112.74054050445558, 4326) . "'))")
+                'point' => DB::raw("(GeomFromText('" . new Point(-7.281629876393493, 112.74031519889833, 4326) . "'))")
             ],
             // [
             //     'connection_id' => 1,

@@ -30,6 +30,7 @@
     <div class="modal-content">
         <h4>Sambungan Baru</h4>
         <p>Form input sambungan baru</p>
+        <p class="red-text right">Tidak ada validasi input <i class="material-icons right">warning</i></p>
         <form class="row">
             <div class="input-field col s12">
                 <select id="new-sto-asal" onchange="enableTujuan(this)">

@@ -41,6 +41,16 @@ class Controller extends BaseView
     public function saveConnection(Request $request)
     {
         $conn = Connection::create($request->all());
+        $locFrom = Location::find($request->from);
+        $locTo = Location::find($request->to);
+        Hop::create([
+            'connection_id'=> $conn->id,
+            'qrcode' => 'RJ04'.$conn->id,
+            'line' => new LineString([
+                new Point($locFrom->point->latitude, $locFrom->point->longitude, 4326),
+                new Point($locTo->point->latitude, $locTo->point->longitude, 4326)
+            ], 4326)
+        ]);
         return Connection::with(['from', 'to'])->findOrFail($conn->id);
     }
 
@@ -59,7 +69,7 @@ class Controller extends BaseView
             abort(400);
         }
         $latlngs = json_decode($request->latlngs);
-        $hop = Hop::find($hopID);
+        $hop = Hop::with(['connection.from', 'connection.to'])->find($hopID);
         if ($hop == null) {
             abort(404);
         }

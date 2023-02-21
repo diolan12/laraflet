@@ -2,11 +2,18 @@
 
 namespace App\Models;
 
-use MatanYadaev\EloquentSpatial\Objects\Point;
 use Illuminate\Database\Eloquent\Model;
+use MatanYadaev\EloquentSpatial\SpatialBuilder;
+use MatanYadaev\EloquentSpatial\Traits\HasSpatial;
+use MatanYadaev\EloquentSpatial\Objects\Point;
 
+/**
+ * @property Point $point
+ * @method static SpatialBuilder query()
+ */
 class Location extends Model
 {
+    use HasSpatial;
     protected $fillable = [
         'name',
         'abbreviation',
