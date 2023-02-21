@@ -54,8 +54,9 @@
     });
 
     var stos = [];
-    var titikSambung = [];
     var conns = [];
+    var titikSambung = [];
+    var hops = [];
 
     payload.data.locations.map((location) => {
         stos.push(L.marker(location.point.coordinates.reverse(), {
@@ -77,6 +78,10 @@
         connection.break_points.map((breakPoint) => {
             titikSambung.push(L.marker(breakPoint.point.coordinates.reverse()));
         });
+        connection.hops.map((hop)=>{
+            hop.line.coordinates.map((c)=>{c.reverse()});
+            hops.push(L.polyline(hop.line.coordinates,{}));
+        });
     });
     // payload.data.fos.map((fo) => {
     //     var _points = []
@@ -91,21 +96,23 @@
     // })
 
     var lgStos = L.layerGroup(stos);
-    var lgTitikSambung = L.layerGroup(titikSambung);
     var lgConns = L.layerGroup(conns);
+    var lgTitikSambung = L.layerGroup(titikSambung);
+    var lgHop = L.layerGroup(hops);
 
     map = L.map('map', {
         // editable: true,
         center: this.centerPosition,
         zoom: 15,
-        layers: [osm, lgStos, lgTitikSambung, lgConns]
+        layers: [osm, lgStos, lgTitikSambung, lgHop]
     });
 
 
     var overlayMaps = {
         "STO": lgStos,
+        "Sambungann": lgConns,
         "Titik Sambung": lgTitikSambung,
-        "Fiber optik": lgConns,
+        "HOP": lgHop,
     };
     var layerControl = L.control.layers(null, overlayMaps).addTo(map);
 

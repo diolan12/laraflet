@@ -34,6 +34,12 @@ class LocationSeeder extends Seeder
                 'abbreviation' => "MYR",
                 'type' => "sto",
                 'point' => DB::raw("(GeomFromText('" . new Point(-7.2851019163914374, 112.78142273426057, 4326) . "'))")
+            ],
+            [
+                'name' => "Ketintang",
+                'abbreviation' => "KTT",
+                'type' => "sto",
+                'point' => DB::raw("(GeomFromText('" . new Point(-7.309964128775075, 112.72710800170898, 4326) . "'))")
             ]
         ]);
     }
