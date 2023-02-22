@@ -2,6 +2,11 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DataController;
+use App\Http\Controllers\RestReadController;
+use App\Http\Controllers\RestCreateController;
+use App\Http\Controllers\RestUpdateController;
+use App\Http\Controllers\RestDeleteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,21 +19,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/api/locations/{lat}/{lng}/{zoom}.json', [DataController::class, 'locations']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 // Route::group();
 $router->group(['prefix' => 'api/{table}', 'middleware' => 'auth'], function () use ($router) {
 
-    $router->get('', ['uses' => 'RestReadController@get']);
-    $router->get('/{id}', ['uses' => 'RestReadController@getAt']);
+    $router->get('', [RestReadController::class, 'get']);
+    $router->get('/{id}', [RestReadController::class, 'getAt']);
 
-    $router->post('', ['uses' => 'RestCreateController@insert']);
+    $router->post('', [RestCreateController::class, 'insert']);
 
-    $router->put('/{id}', ['uses' => 'RestUpdateController@update']);
-    $router->post('/{id}', ['uses' => 'RestUpdateController@update']);
-    $router->put('/where/{col}/{val}', ['uses' => 'RestUpdateController@updateWhere']);
+    $router->put('/{id}', [RestUpdateController::class, 'update']);
+    $router->post('/{id}', [RestUpdateController::class, 'update']);
+    $router->put('/where/{col}/{val}', [RestUpdateController::class, 'updateWhere']);
 
-    $router->delete('/{id}', ['uses' => 'RestDeleteController@delete']);
-    $router->delete('/{id}/restore', ['uses' => 'RestDeleteController@restore']);
+    $router->delete('/{id}', [RestDeleteController::class, 'delete']);
+    $router->delete('/{id}/restore', [RestDeleteController::class, 'restore']);
 });

@@ -6,7 +6,7 @@ use App\RoadRunnerFileHelper;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
-class RestUpdateController extends RestController
+class RestUpdateController extends BaseRest
 {
     /**
      * Create a new controller instance.

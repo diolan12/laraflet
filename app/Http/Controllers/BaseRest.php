@@ -6,7 +6,7 @@ use Illuminate\Routing\Controller;
 // use Laravel\Lumen\Routing\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-class BaseRestController extends Controller
+class BaseRest extends Controller
 {
     /**
      * Response code.

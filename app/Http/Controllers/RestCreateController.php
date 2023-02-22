@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
-class RestCreateController extends RestController
+class RestCreateController extends BaseRest
 {
     /**
      * Create a new controller instance.

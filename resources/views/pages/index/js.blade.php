@@ -59,12 +59,12 @@
     var hops = [];
 
     payload.data.locations.map((location) => {
-        stos.push(L.marker(location.point.coordinates.reverse(), {
-            extraData: location
-        }).on('click', (ev) => {
-            // open modal
-            console.log(ev);
-        }).bindPopup("<b>" + location.type.toUpperCase() + " " + location.name + "</b>"))
+        // stos.push(L.marker(location.point.coordinates.reverse(), {
+        //     extraData: location
+        // }).on('click', (ev) => {
+        //     // open modal
+        //     console.log(ev);
+        // }).bindPopup("<b>" + location.type.toUpperCase() + " " + location.name + "</b>"))
     })
     payload.data.connections.map((connection) => {
         let a = [connection.from.point.coordinates.reverse(), connection.to.point.coordinates.reverse()];
@@ -77,11 +77,17 @@
         // pl.editing.enable();
         conns.push(pl)
         connection.break_points.map((breakPoint) => {
-            titikSambung.push(L.marker(breakPoint.point.coordinates.reverse(), {extraData: breakPoint}));
+            titikSambung.push(L.marker(breakPoint.point.coordinates.reverse(), {
+                extraData: breakPoint
+            }));
         });
-        connection.hops.map((hop)=>{
-            hop.line.coordinates.map((c)=>{c.reverse()});
-            hops.push(L.polyline(hop.line.coordinates,{extraData: hop}));
+        connection.hops.map((hop) => {
+            hop.line.coordinates.map((c) => {
+                c.reverse()
+            });
+            hops.push(L.polyline(hop.line.coordinates, {
+                extraData: hop
+            }));
         });
     });
     // payload.data.fos.map((fo) => {
@@ -219,6 +225,64 @@
             })
         });
     }
+
+    var loading = false;
+
+    function loadLocation(url) {
+        $.get(url, (response, status) => {
+            // stos.push(L.marker(_tempEv.latlng, {
+            //     // draggable: true
+            // }).bindPopup("<b>STO " + name + "</b>"))
+            // reinitSTO();
+            // modalNewWitel.close()
+            stos = [];
+            response.content.map((location) => {
+                stos.push(L.marker(location.point.coordinates.reverse(), {
+                    extraData: location
+                }).on('click', (ev) => {
+                    // open modal
+                    console.log(ev);
+                }).bindPopup("<b>" + location.type.toUpperCase() + " " + location.name +
+                    "</b>"))
+            })
+            reinitSTO()
+            console.log(response);
+            // M.toast({
+            //     text: `Loaded ${response.content.length} data`
+            // })
+        }).fail(() => {
+            M.toast({
+                text: 'Gagal memuat data'
+            })
+        }).always(() => {
+            loading = false;
+        });
+    }
+
+    function log() {
+        var lat = map.getCenter().lat;
+        var lng = map.getCenter().lng;
+        var zoom = map.getZoom();
+        var url = `/api/api/locations/${lat}/${lng}/${zoom}.json`;
+        // if (!loading) {
+        //     console.log(url)
+        //     loading = true;
+            loadLocation(url)
+        // }
+    }
+
+    function restfulLoad(ev) {
+        // clearTimeout()
+        // setTimeout(log, 8000)
+        if (!loading) {
+            loading = true;
+            log()
+        }
+    }
     map.on('click', onMapClick);
     map.on('contextmenu', openModal);
+    // map.on('zoomstart', restfulLoad);
+    // map.on('movestart', restfulLoad);
+    map.on('zoomend', restfulLoad);
+    map.on('moveend', restfulLoad);
 </script>

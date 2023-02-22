@@ -1,5 +1,70 @@
+<style>
+    #map {
+        /* z-index: 0;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%; */
+    }
+</style>
 <div>
-    <div id="map"></div>
+
+
+    <div id="map">
+        <div class="progress" style="position: absolute; bottom: 0; z-index: 999">
+            <div class="indeterminate"></div>
+        </div>
+        <div class="preloader-wrapper big active" style="position: absolute; bottom: 0; left:0; z-index: 999">
+            <div class="spinner-layer spinner-blue">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+    
+            <div class="spinner-layer spinner-red">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+    
+            <div class="spinner-layer spinner-yellow">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+    
+            <div class="spinner-layer spinner-green">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 </div>
 
 <!-- Modal Structure -->

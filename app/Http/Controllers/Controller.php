@@ -47,8 +47,8 @@ class Controller extends BaseView
         $locFrom = Location::find($request->from);
         $locTo = Location::find($request->to);
         Hop::create([
-            'connection_id'=> $conn->id,
-            'qrcode' => 'RJ04'.$conn->id,
+            'connection_id' => $conn->id,
+            'qrcode' => 'RJ04' . $conn->id,
             'line' => new LineString([
                 new Point($locFrom->point->latitude, $locFrom->point->longitude, 4326),
                 new Point($locTo->point->latitude, $locTo->point->longitude, 4326)
@@ -59,15 +59,16 @@ class Controller extends BaseView
 
     public function conn(Request $request, $connID)
     {
-        $conn = Connection::with(['from', 'to', 'break_points', 'hops'])->where('uuid',$connID)->first();
+        $conn = Connection::with(['from', 'to', 'break_points', 'hops'])->where('uuid', $connID)->first();
         if ($conn == null) {
             return abort(404);
         }
         $this->data['connection'] = $conn;
         return $this->render('cable');
     }
-    public function newBreakPoint(Request $request, $connID){
-        $conn = Connection::with(['from', 'to', 'break_points', 'hops'])->where('uuid',$connID)->first();
+    public function newBreakPoint(Request $request, $connID)
+    {
+        $conn = Connection::with(['from', 'to', 'break_points', 'hops'])->where('uuid', $connID)->first();
         if ($conn == null) {
             return abort(404);
         }
@@ -76,8 +77,9 @@ class Controller extends BaseView
             'point' => new Point($request->lat, $request->lng, 4326)
         ]);
     }
-    public function updateHopLine(Request $request, $hopID){
-        if (!$request->has('latlngs')){
+    public function updateHopLine(Request $request, $hopID)
+    {
+        if (!$request->has('latlngs')) {
             abort(400);
         }
         $latlngs = json_decode($request->latlngs);
@@ -86,10 +88,10 @@ class Controller extends BaseView
             abort(404);
         }
         $coordPoints = [];
-        foreach($latlngs as $latlng){
+        foreach ($latlngs as $latlng) {
             $coordPoints[] = new Point($latlng->lat, $latlng->lng, 4326);
         }
-        $hop->line =  new LineString($coordPoints, 4326);
+        $hop->line = new LineString($coordPoints, 4326);
         $hop->save();
         return $hop;
     }

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class RestReadController extends RestController
+class RestReadController extends BaseRest
 {
 
     /**
