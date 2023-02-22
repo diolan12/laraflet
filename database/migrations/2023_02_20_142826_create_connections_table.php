@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('connections', function (Blueprint $table) {
             $table->id();
+            $table->uuid()->unique()->nullable();
             $table->foreignId('from');
             $table->foreignId('to');
             $table->timestamps();

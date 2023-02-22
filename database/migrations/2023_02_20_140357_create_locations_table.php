@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('abbreviation');
-            $table->enum('type', ['nasional', 'divisi', 'witel', 'sto', 'site']);
+            $table->enum('type', ['NASIONAL', 'DIVISI', 'WITEL', 'STO', 'SITE']);
             $table->point('point')->nullable();
             $table->timestamps();
         });

@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use cbschuld\UuidBase58;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -17,6 +17,7 @@ class ConnectionSeeder extends Seeder
     {
         DB::table('connections')->insert([
             [
+                'uuid' => UuidBase58::id(),
                 'from' => 1,
                 'to' => 2
             ]
