@@ -63,7 +63,14 @@
     stos.push(L.marker(connection.to.point.coordinates, {}));
 
     connection.break_points.map((break_point) => {
-        titikSambung.push(L.marker(break_point.point.coordinates.reverse(), {}));
+        var bp = L.marker(break_point.point.coordinates.reverse(), {
+            draggable: true,
+            extraData: break_point
+        });
+        bp.on('dragend', (ev)=>{
+            console.log('async', ev);
+        });
+        titikSambung.push(bp);
     });
     connection.hops.map((hop) => {
         hop.line.coordinates.map((l) => {
@@ -125,8 +132,8 @@
             lat: ev.latlng.lat,
             lng: ev.latlng.lng
         }
-        $.post('/api/break-point/' + connection.id, data, (response, status) => {
-            let newTS = L.marker(response.point.coordinates, {
+        $.post('/api/break-point/' + connection.uuid, data, (response, status) => {
+            let newTS = L.marker(response.point.coordinates.reverse(), {
                 draggable: true,
                 extraData: response
             });

@@ -60,7 +60,7 @@
 
     payload.data.locations.map((location) => {
         stos.push(L.marker(location.point.coordinates.reverse(), {
-            extra: location
+            extraData: location
         }).on('click', (ev) => {
             // open modal
             console.log(ev);
@@ -69,18 +69,19 @@
     payload.data.connections.map((connection) => {
         let a = [connection.from.point.coordinates.reverse(), connection.to.point.coordinates.reverse()];
         let pl = L.polyline(a, {
-            color: 'yellow'
+            color: 'yellow',
+            extraData: connection
         });
         pl.bindPopup("<b>" + connection.from.abbreviation + '-' + connection.to.abbreviation +
             '</b><br><a href="/conn/' + connection.uuid + '"">Edit<a>').openPopup();
         // pl.editing.enable();
         conns.push(pl)
         connection.break_points.map((breakPoint) => {
-            titikSambung.push(L.marker(breakPoint.point.coordinates.reverse()));
+            titikSambung.push(L.marker(breakPoint.point.coordinates.reverse(), {extraData: breakPoint}));
         });
         connection.hops.map((hop)=>{
             hop.line.coordinates.map((c)=>{c.reverse()});
-            hops.push(L.polyline(hop.line.coordinates,{}));
+            hops.push(L.polyline(hop.line.coordinates,{extraData: hop}));
         });
     });
     // payload.data.fos.map((fo) => {
@@ -134,7 +135,7 @@
 
     function openModal(ev) {
         _tempEv = ev;
-        // show modal for witel name
+        console.log(ev);
         modalNewWitel.open()
 
     }

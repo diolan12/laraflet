@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('hops', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('connection_id');
+            $table->foreignIdFor('App\\Models\\Connection', 'connection_id');
             $table->string('qrcode');
             $table->lineString('line')->nullable();
             $table->timestamps();

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('connection_breakpoints', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('connection_id');
+            $table->foreignIdFor('App\\Models\\Connection', 'connection_id');
             $table->point('point')->nullable();
             $table->timestamps();
         });

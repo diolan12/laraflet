@@ -26,7 +26,7 @@ class Controller extends BaseView
 
     public function index()
     {
-        $this->data['locations'] = Location::with(['froms', 'tos'])->get();
+        $this->data['locations'] = Location::with(['froms', 'tos'])->orderBy('name')->get();
         $this->data['connections'] = Connection::with(['from', 'to', 'break_points', 'hops'])->get();
         return $this->render('index');
     }
