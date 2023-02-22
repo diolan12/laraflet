@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 use MatanYadaev\EloquentSpatial\Objects\Point;
 use MatanYadaev\EloquentSpatial\Objects\LineString;
 use Illuminate\Support\Facades\DB;
+use cbschuld\UuidBase58;
 
 // use App\Models\User;
 
@@ -32,7 +33,6 @@ class Controller extends BaseView
 
     public function saveLocation(Request $request)
     {
-
         $data = $request->all();
         $data['name'] = ucfirst($data['name']);
         $data['type'] = 'sto';
@@ -42,6 +42,8 @@ class Controller extends BaseView
     public function saveConnection(Request $request)
     {
         $conn = Connection::create($request->all());
+        $conn->uuid = UuidBase58::id();
+        $conn->save();
         $locFrom = Location::find($request->from);
         $locTo = Location::find($request->to);
         Hop::create([
@@ -57,7 +59,7 @@ class Controller extends BaseView
 
     public function conn(Request $request, $connID)
     {
-        $conn = Connection::with(['from', 'to', 'break_points', 'hops'])->find($connID);
+        $conn = Connection::with(['from', 'to', 'break_points', 'hops'])->where('uuid',$connID)->first();
         if ($conn == null) {
             return abort(404);
         }
@@ -65,8 +67,12 @@ class Controller extends BaseView
         return $this->render('cable');
     }
     public function newBreakPoint(Request $request, $connID){
+        $conn = Connection::with(['from', 'to', 'break_points', 'hops'])->where('uuid',$connID)->first();
+        if ($conn == null) {
+            return abort(404);
+        }
         return ConnectionBreakpoint::create([
-            'connection_id' => $connID,
+            'connection_id' => $conn->id,
             'point' => new Point($request->lat, $request->lng, 4326)
         ]);
     }
