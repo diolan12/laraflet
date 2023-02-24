@@ -20,6 +20,7 @@ use App\Http\Controllers\RestDeleteController;
 */
 
 Route::get('/api/locations/{lat}/{lng}/{zoom}.json', [DataController::class, 'locations']);
+Route::get('/api/findpath.json', [DataController::class, 'findPath']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
