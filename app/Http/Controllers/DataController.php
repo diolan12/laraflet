@@ -53,4 +53,73 @@ class DataController extends BaseRest
         return $this->success($data);
     }
 
+    public function findPath()
+    {
+        $sample = [
+            [
+                'from' => 1,
+                'to' => 2,
+                'w' => 7
+            ],
+            [
+                'from' => 1,
+                'to' => 3,
+                'w' => 9
+            ],
+            [
+                'from' => 1,
+                'to' => 6,
+                'w' => 14
+            ],
+            [
+                'from' => 2,
+                'to' => 3,
+                'w' => 10
+            ],
+            [
+                'from' => 2,
+                'to' => 4,
+                'w' => 15
+            ],
+            [
+                'from' => 3,
+                'to' => 4,
+                'w' => 11
+            ],
+            [
+                'from' => 3,
+                'to' => 6,
+                'w' => 2
+            ],
+            [
+                'from' => 4,
+                'to' => 5,
+                'w' => 6
+            ],
+            [
+                'from' => 6,
+                'to' => 5,
+                'w' => 9
+            ]
+        ];
+        $data = [
+            'sample' => $sample,
+            'count' => count($sample),
+            'fibonacci' => $this->Fibonacci(count($sample))
+        ];
+        return $this->success($data);
+    }
+
+    function Dijkstra(array $data, $from = 1, $to = 5): array
+    {
+        return [];
+    }
+    function Fibonacci(int $n)
+    {
+        if ($n <= 1) {
+            return $n;
+        }
+        return $this->Fibonacci($n - 1) + $this->Fibonacci($n - 2);
+    }
+
 }
